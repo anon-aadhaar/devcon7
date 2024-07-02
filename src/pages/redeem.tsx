@@ -11,6 +11,7 @@ import { Loader } from "@/components/Loader";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import { AppContext } from "./_app";
+import { checkIfRedeemed, checkVoucherAvailability } from "@/utils";
 
 export default function Vote() {
   const [anonAadhaar] = useAnonAadhaar();
@@ -22,6 +23,35 @@ export default function Vote() {
   const [rating, setRating] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [uniqueIdentifier, setUniqueIdentifier] = useState("");
+  const [redeemed, setRedeemed] = useState(null);
+  const [available, setAvailable] = useState(null);
+
+  const handleCheckRedeemed = async () => {
+    try {
+      const result = await checkIfRedeemed(uniqueIdentifier);
+      setRedeemed(result.redeemed);
+      if (result.redeemed) {
+        alert(`Voucher already redeemed: ${result.voucherCode}`);
+      } else {
+        alert("Voucher not yet redeemed");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleCheckAvailability = async () => {
+    try {
+      const result = await checkVoucherAvailability();
+      setAvailable(result.available);
+      alert(
+        result.available ? "Vouchers are available" : "No vouchers available"
+      );
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   useEffect(() => {
     // To do: fix the hook in the react lib
