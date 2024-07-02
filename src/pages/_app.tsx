@@ -4,30 +4,15 @@ import { useState, useEffect, createContext } from "react";
 import type { AppProps } from "next/app";
 import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import { Header } from "../components/Header";
-import { WagmiProvider } from "wagmi";
-import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { Footer } from "@/components/Footer";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { wagmiConfig } from "../config";
-
-const queryClient = new QueryClient();
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID || "";
-
-createWeb3Modal({
-  wagmiConfig: wagmiConfig,
-  projectId,
-});
 
 export const AppContext = createContext({
-  useTestAadhaar: false,
-  setIsTestMode: (isTest: boolean) => {},
   setVoted: (voted: boolean) => {},
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDisplayed, setIsDisplayed] = useState<boolean>(false);
   const [ready, setReady] = useState(false);
-  const [isTestMode, setIsTestMode] = useState<boolean>(true);
   const [voted, setVoted] = useState(false);
 
   useEffect(() => {
@@ -59,27 +44,21 @@ export default function App({ Component, pageProps }: AppProps) {
       {ready ? (
         <AppContext.Provider
           value={{
-            useTestAadhaar: isTestMode,
-            setIsTestMode: setIsTestMode,
             setVoted: setVoted,
           }}
         >
-          <WagmiProvider config={wagmiConfig}>
-            <QueryClientProvider client={queryClient}>
-              <AnonAadhaarProvider>
-                <div className="relative min-h-screen flex flex-col justify-between">
-                  <div className="flex-grow">
-                    <Header />
-                    <Component {...pageProps} />
-                  </div>
-                  <Footer
-                    isDisplayed={isDisplayed}
-                    setIsDisplayed={setIsDisplayed}
-                  />
-                </div>
-              </AnonAadhaarProvider>
-            </QueryClientProvider>
-          </WagmiProvider>
+          <AnonAadhaarProvider>
+            <div className="relative min-h-screen flex flex-col justify-between">
+              <div className="flex-grow">
+                <Header />
+                <Component {...pageProps} />
+              </div>
+              <Footer
+                isDisplayed={isDisplayed}
+                setIsDisplayed={setIsDisplayed}
+              />
+            </div>
+          </AnonAadhaarProvider>
         </AppContext.Provider>
       ) : null}
     </>

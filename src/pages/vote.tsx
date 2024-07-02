@@ -10,15 +10,11 @@ import { Ratings } from "@/components/Ratings";
 import { Loader } from "@/components/Loader";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
-import anonAadhaarVote from "../../public/AnonAadhaarVote.json";
-import { hasVoted } from "@/utils";
 import { AppContext } from "./_app";
-import { writeContract } from "@wagmi/core";
-import { wagmiConfig } from "../config";
 
 export default function Vote() {
   const [anonAadhaar] = useAnonAadhaar();
-  const { useTestAadhaar, setVoted } = useContext(AppContext);
+  const { setVoted } = useContext(AppContext);
   const [, latestProof] = useProver();
   const [anonAadhaarCore, setAnonAadhaarCore] = useState<AnonAadhaarCore>();
   const router = useRouter();
@@ -26,47 +22,6 @@ export default function Vote() {
   const [rating, setRating] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-
-  const sendVote = async (
-    _rating: string,
-    _anonAadhaarCore: AnonAadhaarCore
-  ) => {
-    const packedGroth16Proof = packGroth16Proof(
-      _anonAadhaarCore.proof.groth16Proof
-    );
-    setIsLoading(true);
-    try {
-      const voteTx = await writeContract(wagmiConfig, {
-        abi: anonAadhaarVote.abi,
-        address: `0x${
-          useTestAadhaar
-            ? process.env.NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS_TEST
-            : process.env.NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS_PROD
-        }`,
-        functionName: "voteForProposal",
-        args: [
-          _rating,
-          _anonAadhaarCore.proof.nullifierSeed,
-          _anonAadhaarCore.proof.nullifier,
-          _anonAadhaarCore.proof.timestamp,
-          address,
-          [
-            _anonAadhaarCore.proof.ageAbove18,
-            _anonAadhaarCore.proof.gender,
-            _anonAadhaarCore.proof.pincode,
-            _anonAadhaarCore.proof.state,
-          ],
-          packedGroth16Proof,
-        ],
-      });
-      setIsLoading(false);
-      setIsSuccess(true);
-      console.log("Vote transaction: ", voteTx);
-    } catch (e) {
-      setIsLoading(false);
-      console.log(e);
-    }
-  };
 
   useEffect(() => {
     // To do: fix the hook in the react lib
@@ -80,17 +35,6 @@ export default function Vote() {
       setAnonAadhaarCore(result);
     });
   }, [anonAadhaar, latestProof]);
-
-  useEffect(() => {
-    anonAadhaarCore?.proof.nullifier
-      ? hasVoted(anonAadhaarCore?.proof.nullifier, useTestAadhaar).then(
-          (response) => {
-            if (response) router.push("/results");
-            setVoted(response);
-          }
-        )
-      : null;
-  }, [useTestAadhaar, router, setVoted, anonAadhaarCore]);
 
   useEffect(() => {
     if (isSuccess) router.push("./results");
@@ -127,10 +71,7 @@ export default function Vote() {
                     }
                     type="button"
                     className="inline-block mt-5 bg-[#009A08] rounded-lg text-white px-14 py-1 border-2 border-[#009A08] font-rajdhani font-medium"
-                    onClick={() => {
-                      if (rating !== undefined && anonAadhaarCore !== undefined)
-                        sendVote(rating, anonAadhaarCore);
-                    }}
+                    onClick={() => {}}
                   >
                     VOTE
                   </button>

@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getTotalVotes } from "@/utils";
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { AppContext } from "./_app";
+import React, { useMemo, useState } from "react";
 import { Loader } from "@/components/Loader";
 import { icons } from "@/styles/illustrations";
 import Image from "next/image";
@@ -19,18 +17,11 @@ type Rating = {
 
 export default function Results() {
   const [voteBreakdown, setVoteBreakdown] = useState<Rating[] | null>(null);
-  const { useTestAadhaar } = useContext(AppContext);
   const router = useRouter();
   const [, startReq] = useAnonAadhaar();
 
   const blob = new Blob([icons.leftArrow], { type: "image/svg+xml" });
   const leftArrow = useMemo(() => URL.createObjectURL(blob), [icons.leftArrow]);
-
-  useEffect(() => {
-    getTotalVotes(useTestAadhaar).then((totalVotes) => {
-      setVoteBreakdown(totalVotes);
-    });
-  }, [useTestAadhaar]);
 
   const onStartAgain = () => {
     startReq({ type: "logout" });

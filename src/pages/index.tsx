@@ -1,10 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { LaunchProveModal, useAnonAadhaar } from "@anon-aadhaar/react";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAccount } from "wagmi";
-import { AppContext } from "./_app";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 // This is a trick to enable having both modes in under the same page.
 // This could be removed and only the <LaunchProveModal /> could be displayed.
@@ -41,9 +38,6 @@ const LaunchMode = ({
 
 export default function Home() {
   const [anonAadhaar] = useAnonAadhaar();
-  const { setIsTestMode } = useContext(AppContext);
-  const { isConnected, address } = useAccount();
-  const { open } = useWeb3Modal();
   const router = useRouter();
 
   useEffect(() => {
@@ -69,29 +63,26 @@ export default function Home() {
           </div>
 
           <div className="flex w-full gap-8 mb-8">
-            {isConnected ? (
-              <div>
-                <div className="flex gap-4 place-content-center">
-                  <LaunchMode
-                    isTest={false}
-                    setIsTestMode={setIsTestMode}
-                    address={address as string}
-                  />
-                  <LaunchMode
-                    isTest={true}
-                    setIsTestMode={setIsTestMode}
-                    address={address as string}
-                  />
-                </div>
+            <div>
+              <div className="flex gap-4 place-content-center">
+                <LaunchProveModal
+                  nullifierSeed={Math.floor(Math.random() * 1983248)}
+                  signal={"signal: application id"}
+                  buttonStyle={{
+                    borderRadius: "8px",
+                    border: "solid",
+                    borderWidth: "1px",
+                    boxShadow: "none",
+                    fontWeight: 500,
+                    borderColor: "#009A08",
+                    color: "#009A08",
+                    fontFamily: "rajdhani",
+                  }}
+                  buttonTitle={"Connect with your Aadhaar"}
+                />
               </div>
-            ) : (
-              <button
-                className="bg-[#009A08] rounded-lg text-white px-6 py-1 font-rajdhani font-medium"
-                onClick={() => open()}
-              >
-                CONNECT WALLET
-              </button>
-            )}
+            </div>
+            )
           </div>
         </div>
       </main>

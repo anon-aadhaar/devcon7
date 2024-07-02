@@ -3,14 +3,11 @@ import {
   Dispatch,
   FunctionComponent,
   SetStateAction,
-  useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
 import imgGithub from "../../public/github-mark.png";
 import Image from "next/image";
-import { AppContext } from "@/pages/_app";
 import { shortenAddress } from "@/utils";
 import { icons } from "../styles/illustrations";
 import { Toaster } from "./Toaster";
@@ -24,7 +21,6 @@ export const Footer: FunctionComponent<FooterProps> = ({
   isDisplayed,
   setIsDisplayed,
 }) => {
-  const { useTestAadhaar } = useContext(AppContext);
   const [contractAddr, setContractAddr] = useState<string | null>(null);
 
   const blob = new Blob([icons.externalLink], { type: "image/svg+xml" });
@@ -32,12 +28,6 @@ export const Footer: FunctionComponent<FooterProps> = ({
     () => URL.createObjectURL(blob),
     [icons.externalLink]
   );
-
-  useEffect(() => {
-    useTestAadhaar
-      ? setContractAddr(process.env.NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS_TEST!)
-      : setContractAddr(process.env.NEXT_PUBLIC_VOTE_CONTRACT_ADDRESS_PROD!);
-  }, [useTestAadhaar]);
 
   return (
     <div className="relative">
