@@ -3,39 +3,6 @@ import { LaunchProveModal, useAnonAadhaar } from "@anon-aadhaar/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-// This is a trick to enable having both modes in under the same page.
-// This could be removed and only the <LaunchProveModal /> could be displayed.
-const LaunchMode = ({
-  isTest,
-  setIsTestMode,
-  address,
-}: {
-  isTest: boolean;
-  setIsTestMode: (isTest: boolean) => void;
-  address: string;
-}) => {
-  return (
-    <span onClick={() => setIsTestMode(isTest)}>
-      <LaunchProveModal
-        nullifierSeed={Math.floor(Math.random() * 1983248)}
-        signal={address}
-        buttonStyle={{
-          borderRadius: "8px",
-          border: "solid",
-          borderWidth: "1px",
-          boxShadow: "none",
-          fontWeight: 500,
-          borderColor: "#009A08",
-          color: "#009A08",
-          fontFamily: "rajdhani",
-        }}
-        buttonTitle={isTest ? "USE TEST CREDENTIALS" : "USE REAL CREDENTIALS"}
-        useTestAadhaar={isTest}
-      />
-    </span>
-  );
-};
-
 export default function Home() {
   const [anonAadhaar] = useAnonAadhaar();
   const router = useRouter();
@@ -53,12 +20,16 @@ export default function Home() {
           <h6 className="text-[36px] font-rajdhani font-medium leading-none">
             ANON AADHAAR
           </h6>
-          <h2 className="text-[90px] font-rajdhani font-medium leading-none">
-            EXAMPLE VOTING APP
+          <h2 className="text-[70px] font-rajdhani font-medium leading-none">
+            DEVCON 7 - Ticket Discounts
           </h2>
           <div className="text-md mt-4 mb-8 text-[#717686]">
+            Anon Aadhaar and the Devcon team gives the opporunity to Indian
+            hackers to have discounts on their Devcon tickets.
+          </div>
+          <div className="text-md mt-4 mb-8 text-[#717686]">
             This process ensures anonymity by utilizing the Aadhaar secure QR
-            code (present on e-Aadhaar and the printed Aadhaar letter) which
+            code (present on e-Aadhaar and available on the mAadhaar app) which
             preserves the confidentiality of the Aadhaar number.
           </div>
 
@@ -66,7 +37,7 @@ export default function Home() {
             <div>
               <div className="flex gap-4 place-content-center">
                 <LaunchProveModal
-                  nullifierSeed={Math.floor(Math.random() * 1983248)}
+                  nullifierSeed={1234}
                   signal={"signal: application id"}
                   buttonStyle={{
                     borderRadius: "8px",
@@ -82,7 +53,6 @@ export default function Home() {
                 />
               </div>
             </div>
-            )
           </div>
         </div>
       </main>
