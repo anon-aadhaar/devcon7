@@ -1,14 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Dispatch,
-  FunctionComponent,
-  SetStateAction,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, FunctionComponent, SetStateAction, useMemo } from "react";
 import imgGithub from "../../public/github-mark.png";
 import Image from "next/image";
-import { shortenAddress } from "@/utils";
 import { icons } from "../styles/illustrations";
 import { Toaster } from "./Toaster";
 
@@ -21,8 +14,6 @@ export const Footer: FunctionComponent<FooterProps> = ({
   isDisplayed,
   setIsDisplayed,
 }) => {
-  const [contractAddr, setContractAddr] = useState<string | null>(null);
-
   const blob = new Blob([icons.externalLink], { type: "image/svg+xml" });
   const externalLinkIcon = useMemo(
     () => URL.createObjectURL(blob),
@@ -37,10 +28,10 @@ export const Footer: FunctionComponent<FooterProps> = ({
           <a
             target={"_blank"}
             rel={"noreferrer"}
-            href="https://anon-aadhaar-documentation.vercel.app/docs/quick-setup"
+            href="https://documentation.anon-aadhaar.pse.dev/docs/how-does-it-work"
           >
             <div className="flex flex-row text-sm items-center text-black font-rajdhani font-medium gap-1 hover:underline">
-              <p className="leading-none text-lg pt-1">TUTORIAL</p>
+              <p className="leading-none text-lg pt-1">WHAT IS ANON AADHAAR?</p>
               <Image
                 priority
                 src={externalLinkIcon}
@@ -52,9 +43,6 @@ export const Footer: FunctionComponent<FooterProps> = ({
             </div>
           </a>
           <div className="flex flex-row justify-center items-center gap-8">
-            <p className="text-lg text-black font-rajdhani font-medium underline">
-              {shortenAddress("0x" + contractAddr?.toUpperCase())}
-            </p>
             <a
               target={"_blank"}
               rel={"noreferrer"}

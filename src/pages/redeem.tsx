@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useAnonAadhaar, useProver } from "@anon-aadhaar/react";
 import { AnonAadhaarCore, deserialize } from "@anon-aadhaar/core";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import {
   checkIfRedeemed,
   checkVoucherAvailability,
@@ -79,7 +79,7 @@ export default function Vote() {
             Redeem your voucher
           </h2>
           <div className="text-md mt-4 mb-8 text-[#717686]">
-            Now that your identity is varified, you can redeem your voucher.
+            Now that your identity is verified, you can redeem your voucher.
           </div>
 
           <div className="flex flex-col gap-5">

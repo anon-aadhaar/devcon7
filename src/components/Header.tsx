@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FunctionComponent, useMemo } from "react";
+import { FunctionComponent, useContext, useMemo } from "react";
 import Image from "next/image";
 import { icons } from "../styles/illustrations";
-import { shortenAddress } from "@/utils";
 
 export const Header: FunctionComponent = () => {
   const blob = new Blob([icons.aalogo], { type: "image/svg+xml" });
@@ -10,7 +9,7 @@ export const Header: FunctionComponent = () => {
 
   return (
     <header className="flex flex-row justify-between">
-      <div className="flex flex-row items-center mx-5">
+      <div className="flex flex-row items-center mx-5 p-5">
         <Image
           priority
           src={aaLogo}
