@@ -24,6 +24,5 @@
     "**/*.tsx",
     "./contracts/hardhat.config.js"
   ],
-  "exclude": ["node_modules"],
-  "files": ["./contracts/hardhat.config.ts"]
+  "exclude": ["node_modules"]
 }
