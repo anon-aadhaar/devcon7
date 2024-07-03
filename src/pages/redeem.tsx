@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useAnonAadhaar, useProver } from "@anon-aadhaar/react";
-import {
-  AnonAadhaarCore,
-  deserialize,
-  packGroth16Proof,
-} from "@anon-aadhaar/core";
+import { AnonAadhaarCore, deserialize } from "@anon-aadhaar/core";
 import { useEffect, useState, useContext } from "react";
-import { Ratings } from "@/components/Ratings";
-import { Loader } from "@/components/Loader";
 import { useRouter } from "next/router";
 import { AppContext } from "./_app";
-import { checkIfRedeemed, checkVoucherAvailability } from "@/utils";
+import {
+  checkIfRedeemed,
+  checkVoucherAvailability,
+  sendRedeemRequest,
+} from "@/utils";
+import { Loader } from "@/components/Loader";
+import { ShowVoucher } from "@/components/ShowVoucher";
 
 export default function Vote() {
   const [anonAadhaar] = useAnonAadhaar();
@@ -20,12 +20,15 @@ export default function Vote() {
   const router = useRouter();
   const [rating, setRating] = useState<string>();
   const [redeemed, setRedeemed] = useState(null);
+  const [voucher, setVoucher] = useState<string | null>(null);
   const [available, setAvailable] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCheckRedeemed = async (nullifier: string) => {
     try {
       const result = await checkIfRedeemed(nullifier);
       setRedeemed(result.redeemed);
+      if (result.redeemed) setVoucher(result.voucherCode);
     } catch (error) {
       console.log(error);
     }
@@ -53,44 +56,52 @@ export default function Vote() {
     deserialize(
       anonAadhaarProofs[Object.keys(anonAadhaarProofs).length - 1].pcd
     ).then((result) => {
-      console.log(result);
       setAnonAadhaarCore(result);
     });
   }, [anonAadhaar, latestProof]);
+
+  const handleRedeem = () => {
+    if (anonAadhaarCore)
+      sendRedeemRequest(anonAadhaarCore)
+        .then((resp) => {
+          const { voucherCode } = resp;
+          setVoucher(voucherCode);
+        })
+        .catch((e) => console.log(e));
+  };
 
   return (
     <>
       <main className="flex flex-col min-h-[75vh] mx-auto justify-center items-center w-full p-4">
         <div className="max-w-4xl w-full">
-          <h2 className="text-[90px] font-rajdhani font-medium leading-none">
-            CAST YOUR VOTE
+          <h2 className="text-[70px] font-rajdhani font-medium leading-none">
+            Redeem your voucher
           </h2>
           <div className="text-md mt-4 mb-8 text-[#717686]">
-            Next, you have the option to cast your vote alongside your Anon
-            Adhaar proof, using your connected ETH address. Your vote will be
-            paired with your proof, and the smart contract will initially verify
-            your proof before processing your vote.
+            Now that your identity is varified, you can redeem your voucher.
           </div>
 
-          {redeemed ? (
-            <>You've already redeemed your voucher</>
-          ) : !available ? (
-            <>Sorry there is no more vouchers available</>
-          ) : (
-            <>REDEEM BUTTON</>
-          )}
-
           <div className="flex flex-col gap-5">
-            <div>
-              <button
-                disabled={rating === undefined || anonAadhaarCore === undefined}
-                type="button"
-                className="inline-block mt-5 bg-[#009A08] rounded-lg text-white px-14 py-1 border-2 border-[#009A08] font-rajdhani font-medium"
-                onClick={() => {}}
-              >
-                VOTE
-              </button>
-            </div>
+            {redeemed ? (
+              voucher && <ShowVoucher voucher={voucher} />
+            ) : !available ? (
+              <>Sorry there is no more vouchers available</>
+            ) : isLoading ? (
+              <Loader />
+            ) : voucher ? (
+              <ShowVoucher voucher={voucher} />
+            ) : (
+              <div>
+                <button
+                  disabled={anonAadhaarCore === undefined}
+                  type="button"
+                  className="inline-block mt-5 bg-[#009A08] rounded-lg text-white px-14 py-1 border-2 border-[#009A08] font-rajdhani font-medium"
+                  onClick={handleRedeem}
+                >
+                  Redeem
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </main>

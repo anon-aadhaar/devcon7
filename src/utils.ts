@@ -36,3 +36,21 @@ export async function checkVoucherAvailability() {
   const data = await response.json();
   return data;
 }
+
+export async function sendRedeemRequest(anonAadhaarProof: AnonAadhaarCore) {
+  const response = await fetch("/api/redeem", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ anonAadhaarProof }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
+  const data = await response.json();
+  return data;
+}
