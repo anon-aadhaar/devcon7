@@ -1,5 +1,5 @@
 {
-  "name": "anon-aadhaar-boilerplate",
+  "name": "anon-aadhaar-devcon7",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
