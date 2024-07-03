@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     if (anonAadhaar.status === "logged-in") {
-      router.push("./vote");
+      router.push("./redeem");
     }
   }, [anonAadhaar, router]);
 
@@ -38,7 +38,7 @@ export default function Home() {
               <div className="flex gap-4 place-content-center">
                 <LaunchProveModal
                   nullifierSeed={1234}
-                  signal={"signal: application id"}
+                  signal={"94839849"}
                   buttonStyle={{
                     borderRadius: "8px",
                     border: "solid",
@@ -50,6 +50,7 @@ export default function Home() {
                     fontFamily: "rajdhani",
                   }}
                   buttonTitle={"Connect with your Aadhaar"}
+                  useTestAadhaar={true}
                 />
               </div>
             </div>

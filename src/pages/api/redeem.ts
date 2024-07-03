@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import supabaseAdmin from "../supabaseAdmin";
+import supabaseAdmin from "../../supabaseAdmin";
 import {
   verify,
   init,
@@ -36,7 +36,7 @@ export default async function handler(
     // Check if the user has already claimed a voucher
     const { data: existingVoucher, error: existingVoucherError } =
       await supabaseAdmin
-        .from("vouchers")
+        .from("Vouchers")
         .select("voucher_code")
         .eq("nullifier", nullifier)
         .single();
@@ -46,7 +46,7 @@ export default async function handler(
 
     // Fetch an available voucher
     const { data: voucher, error: voucherError } = await supabaseAdmin
-      .from("vouchers")
+      .from("Vouchers")
       .select("id, voucher_code")
       .is("nullifier", null)
       .limit(1)
@@ -57,7 +57,7 @@ export default async function handler(
 
     // Update the voucher with the user's unique identifier
     const { error: updateError } = await supabaseAdmin
-      .from("vouchers")
+      .from("Vouchers")
       .update({ nullifier: nullifier })
       .eq("id", voucher.id);
 

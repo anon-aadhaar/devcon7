@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import supabaseAdmin from "../supabaseAdmin";
+import supabaseAdmin from "../../supabaseAdmin";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,7 +8,7 @@ export default async function handler(
   if (req.method === "GET") {
     // Check if there are any available vouchers
     const { data: availableVoucher, error: voucherError } = await supabaseAdmin
-      .from("vouchers")
+      .from("Vouchers")
       .select("id")
       .is("nullifier", null)
       .limit(1)
