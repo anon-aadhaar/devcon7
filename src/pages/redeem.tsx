@@ -2,8 +2,6 @@
 import { useAnonAadhaar, useProver } from "@anon-aadhaar/react";
 import { AnonAadhaarCore, deserialize } from "@anon-aadhaar/core";
 import { useEffect, useState, useContext } from "react";
-import { useRouter } from "next/router";
-import { AppContext } from "./_app";
 import {
   checkIfRedeemed,
   checkVoucherAvailability,
@@ -14,11 +12,8 @@ import { ShowVoucher } from "@/components/ShowVoucher";
 
 export default function Vote() {
   const [anonAadhaar] = useAnonAadhaar();
-  const { setVoted } = useContext(AppContext);
   const [, latestProof] = useProver();
   const [anonAadhaarCore, setAnonAadhaarCore] = useState<AnonAadhaarCore>();
-  const router = useRouter();
-  const [rating, setRating] = useState<string>();
   const [redeemed, setRedeemed] = useState(null);
   const [voucher, setVoucher] = useState<string | null>(null);
   const [available, setAvailable] = useState(null);
@@ -61,13 +56,19 @@ export default function Vote() {
   }, [anonAadhaar, latestProof]);
 
   const handleRedeem = () => {
-    if (anonAadhaarCore)
+    if (anonAadhaarCore) {
+      setIsLoading(true);
       sendRedeemRequest(anonAadhaarCore)
         .then((resp) => {
           const { voucherCode } = resp;
           setVoucher(voucherCode);
+          setIsLoading(false);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          setIsLoading(false);
+          console.log(e);
+        });
+    }
   };
 
   return (

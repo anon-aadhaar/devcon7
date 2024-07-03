@@ -47,8 +47,8 @@ export async function sendRedeemRequest(anonAadhaarProof: AnonAadhaarCore) {
   });
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message);
+    const { error } = await response.json();
+    throw new Error(error);
   }
 
   const data = await response.json();

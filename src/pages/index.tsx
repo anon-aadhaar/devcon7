@@ -37,8 +37,7 @@ export default function Home() {
             <div>
               <div className="flex gap-4 place-content-center">
                 <LaunchProveModal
-                  nullifierSeed={1234}
-                  signal={"94839849"}
+                  nullifierSeed={Number(process.env.NEXT_PUBLIC_NULLIFIER_SEED)}
                   buttonStyle={{
                     borderRadius: "8px",
                     border: "solid",
