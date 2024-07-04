@@ -14,7 +14,7 @@ export const ShowVoucher = ({ voucher }: { voucher: string }) => {
   };
 
   return (
-    <div className="w-full max-w-[26rem]">
+    <div className="w-full max-w-[26rem] my-5">
       <div className="relative">
         <label htmlFor="npm-install-copy-text" className="sr-only">
           Label

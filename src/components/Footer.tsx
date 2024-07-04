@@ -46,7 +46,7 @@ export const Footer: FunctionComponent<FooterProps> = ({
             <a
               target={"_blank"}
               rel={"noreferrer"}
-              href="https://github.com/privacy-scaling-explorations/anon-aadhaar"
+              href="https://github.com/anon-aadhaar/devcon7"
             >
               <Image
                 alt="github"

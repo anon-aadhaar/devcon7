@@ -84,13 +84,37 @@ export default function Vote() {
 
           <div className="flex flex-col gap-5">
             {redeemed ? (
-              voucher && <ShowVoucher voucher={voucher} />
+              voucher && (
+                <div>
+                  <ShowVoucher voucher={voucher} />
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10 hover:underline">
+                    <a
+                      key={"Go to Devcon ticket app"}
+                      href={"https://tickets.devcon.org/en/tickets/"}
+                      target="blank"
+                    >
+                      {"Get your ticket"} <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+                </div>
+              )
             ) : !available ? (
               <>Sorry there is no more vouchers available</>
             ) : isLoading ? (
               <Loader />
             ) : voucher ? (
-              <ShowVoucher voucher={voucher} />
+              <div>
+                <ShowVoucher voucher={voucher} />
+                <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                  <a
+                    key={"Go to Devcon ticket app"}
+                    href={"https://tickets.devcon.org/en/tickets/"}
+                  >
+                    {"Go to Devcon ticket app"}{" "}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
             ) : (
               <div>
                 <button
