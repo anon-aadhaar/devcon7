@@ -43,19 +43,19 @@ export default function Home() {
               working with Anon Aadhaar
             </a>{" "}
             to allow Indian residents to use Zero-Knowledge Proofs (ZKPs) to
-            prove Indian residency for a chance at qualifying for a{" "}
+            prove Indian residency for a <i>chance at qualifying</i> for a{" "}
             <b>discounted ticket</b> to Devcon.
             <br />
             <br />
             <p>
-              Simply prove you're from Indian using privacy-preserving ZKPs &
+              Simply prove you're from India using privacy-preserving ZKPs &
               your Aadhaar secure QR code.
             </p>
           </div>
           <div className="text-md mt-4 mb-8 text-[#717686]">
             You must generate a fresh <b>Aadhaar secure QR code</b>, and can
             only verify a QR code that was <b>generated less than 1 hour ago</b>
-            , press button to get started.
+            , please press continue below to get started.
           </div>
 
           <div className="flex w-full gap-8 mb-8">
@@ -73,7 +73,7 @@ export default function Home() {
                     color: "#009A08",
                     fontFamily: "rajdhani",
                   }}
-                  buttonTitle={"Connect with your Aadhaar"}
+                  buttonTitle={"Continue Applying for Discount"}
                 />
               </div>
             </div>
