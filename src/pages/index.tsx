@@ -61,7 +61,6 @@ export default function Home() {
                     fontFamily: "rajdhani",
                   }}
                   buttonTitle={"Connect with your Aadhaar"}
-                  useTestAadhaar={true}
                 />
               </div>
             </div>
