@@ -34,15 +34,28 @@ export default function Home() {
             DEVCON 7 - Ticket Discounts
           </h2>
           <div className="text-md mt-4 mb-8 text-[#717686]">
-            Anon Aadhaar and the Devcon team gives the opportunity to the Indian
-            commmunity to have discounts on their Devcon tickets.
+            The Devcon team is{" "}
+            <a
+              href="https://forum.devcon.org/t/dip-40-integration-of-anon-aadhaar-for-ticket-discounts-targeting-indian-citizens/3632"
+              target="blank"
+              className="text-blue-500"
+            >
+              working with Anon Aadhaar
+            </a>{" "}
+            to allow Indian residents to use Zero-Knowledge Proofs (ZKPs) to
+            prove Indian residency for a chance at qualifying for a{" "}
+            <b>discounted ticket</b> to Devcon.
+            <br />
+            <br />
+            <p>
+              Simply prove you're from Indian using privacy-preserving ZKPs &
+              your Aadhaar secure QR code.
+            </p>
           </div>
           <div className="text-md mt-4 mb-8 text-[#717686]">
-            This process ensures anonymity by utilizing the Aadhaar secure QR
-            code (present on e-Aadhaar and available on the mAadhaar app) which
-            preserves the confidentiality of the Aadhaar number. You must
-            generate a fresh <b>Aadhaar secure QR code</b>, and can only verify
-            a QR code that was <b>generated less than 1 hour ago</b>.
+            You must generate a fresh <b>Aadhaar secure QR code</b>, and can
+            only verify a QR code that was <b>generated less than 1 hour ago</b>
+            , press button to get started.
           </div>
 
           <div className="flex w-full gap-8 mb-8">
