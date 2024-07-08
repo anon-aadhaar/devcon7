@@ -26,16 +26,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@anon-aadhaar/contracts@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@anon-aadhaar/contracts@npm:2.2.0"
-  checksum: 10c0/3448f54daf8830714369eb04e61fee9deff54edf717bff919f0f8afe8f5cf0604957a6fb305369073b98db1bce1477616096211c7d6afbbcb6a5ebee36d391a8
+"@anon-aadhaar/contracts@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@anon-aadhaar/contracts@npm:2.2.1"
+  checksum: 10c0/4c7b7254917164c72387b0c3765fe1b69ec72db5b0c9b74d12656ad52077c769c8ad07a077461dd818f0102a0da89290da72314fda0740722c4a704c657cea92
   languageName: node
   linkType: hard
 
-"@anon-aadhaar/core@npm:2.2.0, @anon-aadhaar/core@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@anon-aadhaar/core@npm:2.2.0"
+"@anon-aadhaar/core@npm:2.2.1, @anon-aadhaar/core@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@anon-aadhaar/core@npm:2.2.1"
   dependencies:
     "@pcd/pcd-types": "npm:^0.10.0"
     "@pcd/tsconfig": "npm:^0.6.0"
@@ -53,15 +53,15 @@ __metadata:
     uuid: "npm:^9.0.0"
     valid-url: "npm:^1.0.9"
     web-worker: "npm:1.2.0"
-  checksum: 10c0/92c1a54f2c1ecda2925ec28b628f8972bd479edb8ce73481fb3d936d3a9aa29770e333546c6e8cfc25a8ca95ba7fdbef3892376a2f31cac1f146b1dc84e3df11
+  checksum: 10c0/6afd700a3065ae22b052181a170dbef81ea2f232f4acbfc980523769f8e2b426c9c96bb8353f3a0126c98d6c9ac5fab331fdfea1685e45882ccbb45064e465ca
   languageName: node
   linkType: hard
 
-"@anon-aadhaar/react@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@anon-aadhaar/react@npm:2.2.0"
+"@anon-aadhaar/react@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@anon-aadhaar/react@npm:2.2.1"
   dependencies:
-    "@anon-aadhaar/core": "npm:2.2.0"
+    "@anon-aadhaar/core": "npm:2.2.1"
     "@pcd/pcd-types": "npm:^0.6.0"
     "@types/json-bigint": "npm:^1.0.1"
     "@types/pako": "npm:^2.0.0"
@@ -82,7 +82,7 @@ __metadata:
     webfontloader: "npm:^1.6.28"
   peerDependencies:
     react: ^18.2.0
-  checksum: 10c0/bbf46b83aff3d3751f479d12043c1347e990c5f6c3463543b9109b7fd933bdd8a8a44050a9391c8865eaf6adfd6ccdd1a2726dccfff526c9e9c904d247b6c875
+  checksum: 10c0/6b3b2d5a355d352643bea2af2bc8b44c1cac2f17531cafdbd1a10c8139b3c5bfa935fc8bdda3b336fab0aa988b5e617eb5673f41e71c809e5f9c0201e80fb29a
   languageName: node
   linkType: hard
 
@@ -3492,9 +3492,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "anon-aadhaar-devcon7@workspace:."
   dependencies:
-    "@anon-aadhaar/contracts": "npm:^2.2.0"
-    "@anon-aadhaar/core": "npm:^2.2.0"
-    "@anon-aadhaar/react": "npm:^2.2.0"
+    "@anon-aadhaar/contracts": "npm:^2.2.1"
+    "@anon-aadhaar/core": "npm:^2.2.1"
+    "@anon-aadhaar/react": "npm:^2.2.1"
     "@heroicons/react": "npm:^2.0.18"
     "@nomicfoundation/hardhat-chai-matchers": "npm:^2.0.0"
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.0"
