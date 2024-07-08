@@ -33,29 +33,31 @@ export default function Home() {
           <h2 className="text-[70px] font-rajdhani font-medium leading-none">
             DEVCON 7 - Ticket Discounts
           </h2>
-          <div className="text-md mt-4 mb-8 text-[#717686]">
-            The Devcon team is{" "}
-            <a
-              href="https://forum.devcon.org/t/dip-40-integration-of-anon-aadhaar-for-ticket-discounts-targeting-indian-citizens/3632"
-              target="blank"
-              className="text-blue-500"
-            >
-              working with Anon Aadhaar
-            </a>{" "}
-            to allow Indian residents to use Zero-Knowledge Proofs (ZKPs) to
-            prove Indian residency for a <i>chance at qualifying</i> for a{" "}
-            <b>discounted ticket</b> to Devcon.
-            <br />
-            <br />
-            <p>
-              Simply prove you're from India using privacy-preserving ZKPs &
-              your Aadhaar secure QR code.
-            </p>
-          </div>
-          <div className="text-md mt-4 mb-8 text-[#717686]">
-            You must generate a fresh <b>Aadhaar secure QR code</b>, and can
-            only verify a QR code that was <b>generated less than 1 hour ago</b>
-            , please press continue below to get started.
+          <div className="flex flex-col text-md mt-4 mb-8 gap-4 text-[#717686]">
+            <div className="flex">
+              <p>
+                Prove you’re eligible for a Local SEA Builder Discount on a
+                Devcon ticket with Anon Aadhaar!
+              </p>
+            </div>
+            <div className="flex">
+              <p>
+                Simply prove you’re from India using privacy-preserving ZK
+                proofs, and your Aadhaar secure QR code.
+              </p>
+            </div>
+            <div className="flex">
+              <p>
+                You must generate a fresh <b>Aadhaar secure QR code</b>, and can
+                only verify a QR code that was{" "}
+                <b>generated less than 1 hour ago</b>.
+              </p>
+            </div>
+            <div className="flex">
+              <p>
+                <b>Please press continue below to get started</b>.
+              </p>
+            </div>
           </div>
 
           <div className="flex w-full gap-8 mb-8">
@@ -77,6 +79,16 @@ export default function Home() {
                 />
               </div>
             </div>
+          </div>
+          <div>
+            Btw — this collab between AnonAadhaar & Devcon started with a{" "}
+            <a
+              href="https://forum.devcon.org/t/dip-40-integration-of-anon-aadhaar-for-ticket-discounts-targeting-indian-citizens/3632"
+              target="blank"
+              className="text-blue-500"
+            >
+              DIP
+            </a>{" "}
           </div>
         </div>
       </main>
