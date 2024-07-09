@@ -9,6 +9,7 @@ import {
 } from "@/utils";
 import { Loader } from "@/components/Loader";
 import { ShowVoucher } from "@/components/ShowVoucher";
+import { Error } from "@/components/Error";
 
 export default function Vote() {
   const [anonAadhaar] = useAnonAadhaar();
@@ -18,6 +19,7 @@ export default function Vote() {
   const [voucher, setVoucher] = useState<string | null>(null);
   const [available, setAvailable] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleCheckRedeemed = async (nullifier: string) => {
     try {
@@ -66,6 +68,7 @@ export default function Vote() {
         })
         .catch((e) => {
           setIsLoading(false);
+          setErrorMessage(e.message || e.toString());
           console.log(e);
         });
     }
@@ -128,6 +131,10 @@ export default function Vote() {
               </div>
             )}
           </div>
+          <Error
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
         </div>
       </main>
     </>
