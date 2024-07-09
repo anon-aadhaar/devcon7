@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Anon Aadhaar Example</title>
+        <title>Devcon7 - Anon Aadhaar</title>
         <meta property="og:title" content="Anon Aadhaar Example" key="title" />
         <meta
           property="og:image"
