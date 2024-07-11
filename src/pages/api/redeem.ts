@@ -20,13 +20,11 @@ async function verifyAnonAadhaarProof(anonAadhaarProof: AnonAadhaarCore) {
       "[verifyAnonAadhaarProof]: The document was not signed with the Indian government public key."
     );
   if (
-    !(
       Math.floor(Date.now() / 1000) - Number(anonAadhaarProof.proof.timestamp) <
-      3600
-    )
+      24 * 60 * 60
   )
     throw Error(
-      "[verifyAnonAadhaarProof]: Your QR must have been signed less than 1 hour ago."
+      "[verifyAnonAadhaarProof]: Your QR code must have been signed within the last 24 hours. Please retry with a fresh QR code."
     );
   if (
     !(
