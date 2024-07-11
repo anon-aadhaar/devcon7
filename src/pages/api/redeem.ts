@@ -20,7 +20,7 @@ async function verifyAnonAadhaarProof(anonAadhaarProof: AnonAadhaarCore) {
       "[verifyAnonAadhaarProof]: The document was not signed with the Indian government public key."
     );
   if (
-      Math.floor(Date.now() / 1000) - Number(anonAadhaarProof.proof.timestamp) <
+      Math.floor(Date.now() / 1000) - Number(anonAadhaarProof.proof.timestamp) >
       24 * 60 * 60
   )
     throw Error(
