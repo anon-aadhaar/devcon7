@@ -50,7 +50,7 @@ export default function Home() {
               <p>
                 You must generate a fresh <b>Aadhaar secure QR code</b>, and can
                 only verify a QR code that was{" "}
-                <b>generated less than 1 hour ago</b>.
+                <b>generated within 24 hours</b>.
               </p>
             </div>
             <div className="flex">
